@@ -17,12 +17,22 @@ pub struct Publish {
 
 impl Publish {
     /// Construct a new instance.
-    pub fn new(topic: String, payload: Vec<u8>) -> Publish {
+    pub fn new(topic: String, payload: Vec<u8>) -> Self {
         Publish {
             topic,
             payload,
             qos: QoS::AtMostOnce,
             retain: false,
+        }
+    }
+
+    ///Constructs a new instance intended to be used as last will
+    pub fn new_lwt(topic: String, payload: Vec<u8>) -> Self {
+        Publish {
+           topic,
+           payload,
+           qos: QoS::AtLeastOnce,
+           retain: true,
         }
     }
 
